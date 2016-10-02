@@ -1,0 +1,98 @@
+@import ./_vars.sass
+=flex-centred
+  display: flex
+  justify-content: center
+  align-items: center
+=breakpoint($point)
+  @if $point == 1300
+    @media (max-width: 1300px)
+      @content
+  @else if $point == 960
+    @media (max-width: 960px)
+      @content
+  @else if $point == 778
+    @media (max-width: 778px)
+      @content
+=MQ($canvas)
+  @if $canvas == XXS
+    @media only screen and (min-width: $XXS)
+      @content
+  @if $canvas == XS
+    @media only screen and (min-width: $XS)
+      @content
+  @if $canvas == S
+    @media only screen and (min-width: $S)
+      @content
+  @else if $canvas == M
+    @media only screen and (min-width: $M)
+      @content
+  @else if $canvas == LG
+    @media only screen and (min-width: $LG)
+      @content
+  @else if $canvas == L
+    @media only screen and (min-width: $L)
+      @content
+  @else if $canvas == XL
+    @media only screen and (min-width: $XL)
+      @content
+  @else if $canvas == XXL
+    @media only screen and (min-width: $XXL)
+      @content
+  @else if $canvas == TXL
+    @media only screen and (min-width: $TXL)
+      @content
+  @else if $canvas == QXL
+    @media only screen and (min-width: $QXL)
+      @content
+  @else if $canvas == SL
+    @media only screen and (min-width: $SL)
+      @content
+
+=centrify($switcher: "both")
+  @if $switcher == "both"
+    top: 50%
+    left: 50%
+    transform: (translateX(-50%) translateY(-50%))
+  @else if $switcher == "height"
+    top: 50%
+    transform: (translateY(-50%))
+  @else if $switcher == "width"
+    left: 50%
+    transform: (translateX(-50%))
+
+=filter($function: none)
+  -webkit-filter: $function
+  -moz-filter: $function
+  -ms-filter: $function
+  -o-filter: $function
+  filter: $function
+
+=fullsize-canvas
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+  width: 100%
+  height: 100%
+
+@function calculateRem($size)
+  $remSize: $size / 16px
+
+  @return #{$remSize}rem
+
+=fontSize($size)
+  font-size: $size
+  font-size: calculateRem($size)
+
+=placeholder
+  &::-webkit-input-placeholder
+    @content
+
+  &:-moz-placeholder
+    @content
+
+  &::-moz-placeholder
+    @content
+
+  &:-ms-input-placeholder
+    @content

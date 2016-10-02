@@ -1,0 +1,27 @@
+<md-toolbar >
+  <div class="md-toolbar-tools">
+    <md-button aria-label="Go Back" ng-click="$ctrl.toggleLeft()">
+     <md-icon> menu </md-icon>
+    </md-button>
+    <h2>
+      <span>Ардуино</span>
+    </h2>
+  </div>
+</md-toolbar>
+<section layout="row" flex>
+  <md-sidenav class="md-sidenav-left" md-component-id="left"
+              md-disable-backdrop md-whiteframe="4">
+    <md-toolbar layout="row" class="md-theme-indigo">
+      <h1 class="md-toolbar-tools">Ардуино</h1>
+      <md-button class="xs-raised" aria-label="Learn More" ng-click="$ctrl.toggleLeft()">
+        Закрыть
+      </md-button>
+    </md-toolbar>
+    <md-content layout-margin>
+       <md-subheader class="md-no-sticky" layout-align="center center">Навигация</md-subheader>
+       <div layout="column">
+         <md-button md-no-ink class="md-primary" ui-sref='root.home' >Главная</md-button>
+         <md-button md-no-ink class="md-primary" ui-sref='root.test' >Тестовая страница</md-button>
+       </div>
+  </md-sidenav>
+</section>

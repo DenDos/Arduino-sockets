@@ -1,0 +1,40 @@
+<div class="form-components" ng-controller="AuthCtrl">
+  <div class="rk-main-block-wrapper rk-form-wrapper rk-auth-form-wrapper">
+
+    <form name='RegisterForm' server-validate>
+      <div class="rk-form-group">
+        <label for="">Vorname</label>
+        <input name='first_name' type="text" ng-model="user.first_name" placeholder="vorname"  validator="required" valid-method="watch">
+        <div ng-show="auth.errors.first_name.message" class="rk-login-error-wrapper">{{auth.errors.first_name.message}}</div>
+      </div>
+
+      <div class="rk-form-group">
+        <label for="">Nachname</label>
+        <input name='last_name' type="text" ng-model="user.last_name" placeholder="nachname" validator="required" valid-method="submit">
+        <div ng-show="auth.errors.last_name.message" class="rk-login-error-wrapper">{{auth.errors.last_name.message}}</div>
+      </div>
+      <div class="rk-form-group">
+        <label for="">E-Mail</label>
+        <input name='email' type="text" ng-model="user.email" placeholder="email" validator="required, email" valid-method="submit">
+        <div ng-show="auth.errors.email.message" class="rk-login-error-wrapper">{{auth.errors.email.message}}</div>
+      </div>
+      <div class="rk-form-group">
+        <label for="">Adresse</label>
+        <input name='address' type="text" ng-model="user.address" placeholder="address" valid-method="submit">
+        <div ng-show="auth.errors.address.message" class="rk-login-error-wrapper">{{auth.errors.address.message}}</div>
+      </div>
+      <div class="rk-form-group">
+        <label for="">Passwort</label>
+        <input name='password' type="password" ng-model="user.password" placeholder="password" validator="required" valid-method="submit">
+        <div ng-show="auth.errors.password.message" class="rk-login-error-wrapper">{{auth.errors.password.message}}</div>
+      </div>
+      <div class="rk-form-group rk-checkbox-group">
+        <label for="">Hiermit bestätige ich, dass ich die <a href="#">Datenschutzrichtlinien</a> und die <a href="#">AGB</a> gelesen habe</label>
+        <input type="checkbox"/>
+      </div>
+      <div class="rk-form-group">
+        <input validation-submit="RegisterForm" ng-submit="auth.register(user)" type="submit" value="Registrieren" class="rk-signup-style"/>
+      </div>
+    </form>
+  </div>
+</div>

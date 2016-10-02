@@ -1,0 +1,25 @@
+{
+  "mongoose": {
+    "uri": "mongodb://localhost/arduino",
+    "options": {
+      "server": {
+        "socketOptions": {
+          "keepAlive": 1
+        }
+      }
+    }
+  },
+  "jwtSecret": "MyS3cr3tK3Y",
+  "jwtSession": {
+    "session": false
+  },
+  "session": {
+      "secret": "ASCKYO@$2",
+      "key": "sid",
+      "cookie": {
+        "path": "/",
+        "httpOnly": true,
+        "maxAge": null
+      }
+  }
+}

@@ -1,0 +1,17 @@
+.DS_Store
+node_modules/
+bower_components/
+.tmp/
+tmp/
+tmp/*
+#dist/
+gen/
+docs/
+build/
+stats.json
+npm-debug.log
+server/services/http/error.log
+.DS_Store
+uploads
+uploads/*
+server/uploads/*

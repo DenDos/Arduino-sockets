@@ -1,41 +1,32 @@
 class UserService {
 
-  constructor($http, $window, $rootScope, $q, AuthService) {
+  constructor($http, $window, $rootScope, AuthService, config) {
+    this.AuthService  = AuthService
+
     this.$http = $http;
     this.$window = $window;
     this.$rootScope = $rootScope;
-    this.$q = $q;
-    this.API   = '/api';
+    this.config    = config;
+
     var token  = this.$window.localStorage.jwtToken;
     this.token = token;
-    this.auth  = AuthService
+
   }
-
-  $onInit() {
-  }
-
-
 
   saveToken(token) {
     this.$window.localStorage.jwtToken = token;
   }
 
-  getCurrentUserGroups() {
-    return this.$http.get(this.API + '/protected/current_user/groups')
-  }
-
   getUserInfo(id) {
-    var promise;
-    promise = this.$http.get(this.API + '/protected/user/' + id);
-    return promise;
+    return this.$http.get(this.config.api_path  + '/protected/user/' + id);
   }
 
   getCurrentUser () {
     var promise;
-    if(this.auth.isAuthed()){
-      promise = this.$http.get(this.API + '/protected/current_user', {
+    if(this.AuthService.isAuthed()){
+      promise = this.$http.get(this.config.api_path  + '/protected/current_user', {
         headers: {
-          Authorization: this.auth.getToken()
+          Authorization: this.AuthService.getToken()
         }
       })
     } else {
@@ -53,14 +44,14 @@ class UserService {
   }
 
   getUsers() {
-    return this.$http.get(this.API + '/users')
+    return this.$http.get(this.config.api_path  + '/users')
   }
 
   register(params) {
     if (params === undefined) {
       params = {}
     }
-    return this.$http.post(this.API + '/user', {
+    return this.$http.post(this.config.api_path  + '/user', {
         first_name: params.first_name,
         last_name: params.last_name,
         address: params.address,
@@ -73,21 +64,20 @@ class UserService {
     if (params === undefined) {
       params = {}
     }
-    return this.$http.post(this.API + '/authenticate', {
+    return this.$http.post(this.config.api_path  + '/authenticate', {
         email: params.email,
         password: params.password,
       })
   }
 
   update(params) {
-    console.log(params);
-    return this.$http.put(this.API + '/protected/user', {
+    return this.$http.put(this.config.api_path  + '/protected/user', {
         fullname: params.fullname,
         description: params.description
       })
   }
 }
 
-UserService.$inject = ['$http', '$window', '$rootScope', '$q', 'AuthService'];
+UserService.$inject = ['$http', '$window', '$rootScope', 'AuthService', 'config'];
 
 export default UserService;

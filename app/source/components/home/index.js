@@ -16,7 +16,10 @@ const testModule = angular
     $stateProvider
       .state('root.home', {
         url: '/',
-        component: 'home'
+        component: 'home',
+        resolve: {
+          currentUser: UserService => UserService.getCurrentUser()
+        }
       })
   })
   .name;

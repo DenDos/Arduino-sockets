@@ -1,10 +1,15 @@
 class HomeController {
-  constructor($scope, $stateParams, HomeService, $mdSidenav) {
+  constructor($scope, $stateParams, HomeService, $mdSidenav, UserService) {
     this.$mdSidenav = $mdSidenav;
     this.HomeService = HomeService;
     this.users = "asdfasdf ";
     this.toggleLeft  = this.buildToggler('left');
     this.toggleRight = this.buildToggler('right');
+
+    // UserService.getCurrentUser()
+    // .then((data)=>{
+    //   debugger
+    // })
 
   }
 
@@ -18,6 +23,6 @@ class HomeController {
   }
 }
 
-HomeController.$inject = ['$scope', '$stateParams', "HomeService", "$mdSidenav"]
+HomeController.$inject = ['$scope', '$stateParams', "HomeService", "$mdSidenav", 'UserService']
 
 export default HomeController;

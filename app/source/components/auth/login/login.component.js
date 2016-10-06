@@ -1,5 +1,4 @@
-import controller from './auth.controller';
-import template from './auth.template.html';
+import controller from '../auth.controller';
 import loginTemplate from './login.template.html';
 
 

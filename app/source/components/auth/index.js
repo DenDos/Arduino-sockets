@@ -9,12 +9,12 @@ import UserService     from '../../shared/services/user/user.service';
 import authInterceptor from './auth.interceptor';
 
 // login
-import loginTemplate  from './login.template.html'
-import LoginComponent from './login.component'
+import loginTemplate  from './login/login.template.html'
+import LoginComponent from './login/login.component'
 
 // registration
-import regTemplate  from './reg.template.html'
-import RegComponent from './reg.component'
+import regTemplate  from './registration/reg.template.html'
+import RegComponent from './registration/reg.component'
 
 
 
@@ -29,29 +29,25 @@ const auth = angular
   .service('UserService', UserService)
   .factory('authInterceptor', authInterceptor)
   .controller('AuthCtrl', AuthController)
-  // REVIEW: Вынести в глобальный конфиг.
-  .constant('API', 'http://localhost:3000')
   .config(($stateProvider, $urlRouterProvider, $httpProvider) => {
+
     $stateProvider
       .state('auth', {
         abstract: true,
         url: '/auth',
-        component: 'auth',
-
-        // onEnter: function($state, AuthService){
-        //   if(AuthService.isAuthed()){
-        //     $state.go('mainNav');
-        //   }
-        // }
+        component: 'auth'
       })
+
       .state('registration', {
         url: '/registration',
         component: 'reg'
       })
+
       .state('auth.login', {
         url: '/login',
         component: 'login'
       })
+
     $httpProvider.interceptors.push('authInterceptor');
   })
 

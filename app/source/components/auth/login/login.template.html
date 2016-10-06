@@ -1,4 +1,4 @@
-<div class="form-components" ng-controller="AuthCtrl">
+<div class="form-components" ng-controller="AuthCtrl as auth">
   <div class="rk-main-block-wrapper rk-form-wrapper rk-auth-form-wrapper">
 
     <form name='LoginForm'>
@@ -13,7 +13,7 @@
       </div>
       <div class="rk-form-group">
         <div ng-show="auth.message" class="rk-login-error-wrapper">{{auth.message}}</div>
-        <input validation-submit="LoginForm" ng-click="auth.login(user)" ng-hide="auth.isAuthed()" type="submit" value="Login" class="rk-signin-style"/>
+        <input validation-submit="LoginForm" ng-click="auth.login(user)" ng-hide="auth.isAuthed" type="submit" value="Login" class="rk-signin-style"/>
       </div>
     </form>
 

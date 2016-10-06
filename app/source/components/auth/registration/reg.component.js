@@ -1,5 +1,4 @@
-import controller  from './auth.controller';
-import template    from './auth.template.html';
+import controller  from '../auth.controller';
 import regTemplate from './reg.template.html';
 
 const RegComponent = {

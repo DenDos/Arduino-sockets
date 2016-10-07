@@ -8,7 +8,6 @@ const user = angular
     uiRouter
   ])
   .service('UserService', UserService)
-  .constant('API', '/api')
   .config(($httpProvider)=>{
     $httpProvider.defaults.useXDomain = true;
     delete $httpProvider.defaults.headers.common['X-Requested-With'];

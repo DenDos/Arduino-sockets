@@ -24,14 +24,18 @@ class UserService {
   getCurrentUser () {
     var promise;
     if(this.AuthService.isAuthed()){
-      promise = this.$http.get(this.config.api_path  + '/protected/current_user', {
-        headers: {
-          Authorization: this.AuthService.getToken()
-        }
+      promise = new Promise((resolve, reject)=> {
+        this.$http.get(this.config.api_path  + '/protected/current_user', {
+          headers: {
+            Authorization: this.AuthService.getToken()
+          }
+        }).then((response)=>{
+          resolve(response.data.user)
+        })
       })
     } else {
       promise = new Promise(function(resolve, reject) {
-        resolve({data:{user: false}})
+        resolve(false)
       })
     }
     return promise;

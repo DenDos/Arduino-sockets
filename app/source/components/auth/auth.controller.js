@@ -1,5 +1,7 @@
 class AuthController {
-  constructor(AuthService, UserService, $scope) {
+  constructor(AuthService, UserService, $scope, $mdDialog) {
+    this.$mdDialog     = $mdDialog;
+    this.AuthService   = AuthService;
     this.UserService   = UserService;
     this.$scope = $scope;
     this.message = '';
@@ -17,6 +19,25 @@ class AuthController {
     }
   }
 
+  cancel(){
+    this.$mdDialog.cancel();
+  }
+
+  modal(ev) {
+    this.$mdDialog.show({
+      controller: ($scope) => {
+      },
+      template: '<login-form on-close="cancel($event)" current_user="auth.currentUser"></login-form>',
+      parent: angular.element(document.body),
+      targetEvent: ev,
+      clickOutsideToClose:true,
+    })
+    .then(function(answer) {
+    }, function() {
+    });
+
+  }
+
   login(params) {
     self = this
     this.UserService.login(params)
@@ -31,15 +52,15 @@ class AuthController {
   }
 
   logout() {
-    this.auth.logout()
+    this.AuthService.logout()
   }
 
   isAuthed() {
-    return this.auth.isAuthed()
+    return this.AuthService.isAuthed()
   }
 
 }
 
-AuthController.$inject = ['AuthService', 'UserService', '$scope'];
+AuthController.$inject = ['AuthService', 'UserService', '$scope', "$mdDialog"];
 
 export default AuthController;

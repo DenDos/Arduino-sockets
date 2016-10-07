@@ -9,6 +9,12 @@
     <md-button class="md-icon-button" aria-label="Favorite">
           <md-icon style="color: deep-orange;">favorite</md-icon>
     </md-button>
+
+    <span flex></span>
+    <md-button ng-if="$ctrl.currentUser" class="xs-raised" aria-label="Learn More">
+      {{$ctrl.currentUser.email}}
+    </md-button>
+    <login current_user="$ctrl.currentUser"></login>
   </div>
 </md-toolbar>
 

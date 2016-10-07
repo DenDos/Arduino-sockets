@@ -1,21 +1,7 @@
-<div class="form-components" ng-controller="AuthCtrl as auth">
-  <div class="rk-main-block-wrapper rk-form-wrapper rk-auth-form-wrapper">
+<md-button ng-hide="auth.currentUser" ng-click="auth.modal($event)" class="xs-raised" aria-label="Learn More">
+  Войти
+</md-button>
 
-    <form name='LoginForm'>
-
-      <div class="rk-form-group">
-        <label for="">E-Mail</label>
-        <input name='email' type="text" ng-model="user.email" placeholder="email" validator="required, email">
-      </div>
-      <div class="rk-form-group">
-        <label for="">Passwort</label>
-        <input name='password' type="password" ng-model="user.password" placeholder="password" validator="required">
-      </div>
-      <div class="rk-form-group">
-        <div ng-show="auth.message" class="rk-login-error-wrapper">{{auth.message}}</div>
-        <input validation-submit="LoginForm" ng-click="auth.login(user)" ng-hide="auth.isAuthed" type="submit" value="Login" class="rk-signin-style"/>
-      </div>
-    </form>
-
-  </div>
-</div>
+<md-button ng-if="auth.currentUser" ng-click="auth.logout()" class="xs-raised" aria-label="Learn More">
+  Выйти
+</md-button>

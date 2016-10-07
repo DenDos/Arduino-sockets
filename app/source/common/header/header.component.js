@@ -3,7 +3,7 @@ import controller from './header.controller'
 
 const HeaderComponent = {
     bindings:{
-      main: '@'
+      currentUser: '<'
     },
     controller,
     controllerAs: '$ctrl',

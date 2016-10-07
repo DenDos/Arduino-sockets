@@ -11,6 +11,7 @@ import authInterceptor from './auth.interceptor';
 // login
 import loginTemplate  from './login/login.template.html'
 import LoginComponent from './login/login.component'
+import LoginFormComponent from './login/login-form/login_form.component'
 
 // registration
 import regTemplate  from './registration/reg.template.html'
@@ -25,6 +26,7 @@ const auth = angular
   .component('login', LoginComponent)
   .component('reg', RegComponent)
   .component('auth', AuthComponent)
+  .component('loginForm', LoginFormComponent)
   .service('AuthService', AuthService)
   .service('UserService', UserService)
   .factory('authInterceptor', authInterceptor)

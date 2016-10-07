@@ -29,6 +29,7 @@ class AuthService {
 
   logout() {
     this.$window.localStorage.removeItem('jwtToken');
+     window.location.href = '/';
   }
 
 }

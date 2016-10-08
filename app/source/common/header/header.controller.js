@@ -10,6 +10,5 @@ class HeaderController {
       this.$mdSidenav(componentId).toggle();
     }
   }
-
 }
 export default HeaderController;

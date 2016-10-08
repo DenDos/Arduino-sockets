@@ -9,4 +9,5 @@ const HeaderComponent = {
     controllerAs: '$ctrl',
     template: template
 };
+
 export default HeaderComponent;

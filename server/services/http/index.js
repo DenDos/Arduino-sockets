@@ -10,7 +10,6 @@ import path           from 'path'
 import fs             from 'fs'
 import mongoose       from 'mongoose'
 import passport       from 'passport'
-import io                  from 'socket.io'
 
 import config from '../../config'
 
@@ -88,7 +87,7 @@ if (isDeveloping) {
     cache : false,
     gzip: true
   }));
-  
+
   // WEBPACK
   const webpack              = require('webpack')
   const webpackConfig        = require('../../../webpack.config.js')
@@ -131,10 +130,6 @@ if (isProduction) {
     res.sendFile(path.join(publicPath, "index.html"))
   })
 }
-
-var socket = io.listen(server);
-require('../socket')(socket);
-
 
 app.use(require("./errorHandler"))
 

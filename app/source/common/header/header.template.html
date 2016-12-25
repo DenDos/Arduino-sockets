@@ -6,8 +6,11 @@
     <h2>
       <span>Ардуино</span>
     </h2>
-    <md-button class="md-icon-button" aria-label="Favorite">
-          <md-icon style="color: deep-orange;">favorite</md-icon>
+    <md-button ng-if="$ctrl.connected" class="md-icon-button" aria-label="Favorite">
+       <md-icon style="color: deep-orange;">done</md-icon>
+    </md-button>
+    <md-button ng-if="!$ctrl.connected" class="md-icon-button" aria-label="Favorite">
+       <md-icon style="color: deep-orange;">error outline</md-icon>
     </md-button>
 
     <span flex></span>
@@ -28,7 +31,7 @@
       </md-button>
     </md-toolbar>
     <md-content layout-margin>
-       <md-subheader class="md-no-sticky" layout-align="center center">Навигация</md-subheader>
+       <!-- <md-subheader class="md-no-sticky" layout-align="center center">Навигация</md-subheader> -->
        <div layout="column">
          <md-button md-no-ink class="md-primary" ui-sref='root.home' >Главная</md-button>
          <md-button md-no-ink class="md-primary" ui-sref='root.test' >Тестовая страница</md-button>

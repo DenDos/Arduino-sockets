@@ -1,52 +1,95 @@
-#include <Servo.h>
-#include <Arduino.h>
+/*
+ Chat Server
 
-// My files
-#include "defines.h"
-// #include "myFunc.h"
+ A simple server that distributes any incoming messages to all
+ connected clients.  To use, telnet to your device's IP address and type.
+ You can see the client's input in the serial monitor as well.
+ Using an Arduino Wiznet Ethernet shield.
 
-Servo myservo;
-int pos = 0;
-int incomingByte = 1000;
+ Circuit:
+ * Ethernet shield attached to pins 10, 11, 12, 13
 
+ created 18 Dec 2009
+ by David A. Mellis
+ modified 9 Apr 2012
+ by Tom Igoe
+
+ */
+
+#include <SPI.h>
+#include <Ethernet.h>
+
+// Enter a MAC address and IP address for your controller below.
+// The IP address will be dependent on your local network.
+// gateway and subnet are optional:
+byte mac[] = {
+  0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED
+};
+IPAddress ip(192, 168, 0, 107);
+IPAddress myDns(192,168,0, 1);
+IPAddress gateway(192, 168, 0, 1);
+IPAddress subnet(255, 255, 254, 0);
+
+#define pot A0
+int prev = 0;
+int current = 0;
+String string;
+char cstr[16];
+String str;
+
+
+// telnet defaults to port 23
+EthernetServer server(1337);
+boolean alreadyConnected = false; // whether or not the client was connected previously
 void setup() {
- pinMode(LED_PIN, OUTPUT);
- pinMode(POT_PIN, INPUT);
- myservo.attach(SERVO_PIN);
- Serial.begin(9600);
+
+  pinMode(pot, INPUT);
+  // initialize the ethernet device
+  Ethernet.begin(mac, ip, myDns, gateway, subnet);
+  // start listening for clients
+  server.begin();
+  // Open serial communications and wait for port to open:
+  Serial.begin(9600);
+  while (!Serial) {
+    ; // wait for serial port to connect. Needed for native USB port only
+  }
+
+
+  Serial.print("Chat server address:");
+  Serial.println(Ethernet.localIP());
 }
 
 void loop() {
- int y=0;
- Serial.print("POT VALUE : ");
- y = map(analogRead(POT_PIN), 713, 1023, 0, 180);
+  current = map(analogRead(pot), 0, 1024, 0, 100);
 
- Serial.println(y, DEC);
- myservo.write(y);
- delay(15);
+  // wait for a new client:
+  EthernetClient client = server.available();
 
- // if (Serial.available() > 0) { //если есть доступные данные
- // // считываем байт
- // incomingByte = Serial.parseInt();
- // // отсылаем то, что получили
- // Serial.print("Set servo on : ");
- // Serial.println(incomingByte, DEC);
- // myservo.writeMicroseconds(incomingByte);
- // }
+  if (alreadyConnected) {
+    if (current != prev) {
+      prev = current;
+      server.print(current);
+      // Serial.println(current);
+    }
+  }
 
- // digitalWrite(13, HIGH); // turn the LED on (HIGH is the voltage level)
- // delay(1000); // wait for a second
- // digitalWrite(13, LOW); // turn the LED off by making the voltage LOW
- // delay(1000);
+  // when the client sends the first byte, say hello:
+  if (client) {
+    if (!alreadyConnected) {
+      // clear out the input buffer:
+      client.flush();
+      Serial.println("We have a new client");
+      client.println("Hello, client!");
+      alreadyConnected = true;
+    }
 
- // for(pos = 1000; pos < 2000; pos += 100) // от 0 до 180 градусов
- // { // с шагом в 1 градус
- // myservo.writeMicroseconds(pos); //
- // delay(500); // ждём 15ms пока серва займёт новое положение
- // }
- // for(pos = 2000; pos>=1000; pos-=100) // от 180 до 0 градусов
- // {
- // myservo.writeMicroseconds(pos);
- // delay(500);
- // }
+    if (client.available() > 0) {
+      // read the bytes incoming from the client:
+      char thisChar = client.read();
+      // echo the bytes back to the client:
+      // server.write("MESSAGE||");
+      // echo the bytes to the server as well:
+      // Serial.write(thisChar);
+    }
+  }
 }

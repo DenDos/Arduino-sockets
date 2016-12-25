@@ -1,8 +1,8 @@
 class HomeService {
 
   constructor(config, $http, $window, $rootScope) {
-    this.$http = $http;
-    this.config = config;
+    this.$http   = $http;
+    this.config  = config;
   }
 
   $onInit() {

@@ -39,7 +39,7 @@ exports.authenticate = (req, res,next) => {
         throw(err)
       }
 
-      if(!user) {
+      if (!user) {
         res.send({
           success: false,
           message: 'Authentication failed. User not found.'
@@ -227,4 +227,3 @@ exports.add = (req, res,next) => {
     }
   })
 }
-

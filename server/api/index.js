@@ -12,7 +12,7 @@ module.exports = router
 router.use('/protected',                     passport.authenticate('jwt', config.get('jwtSession')))
 
 // # Auth
-router.post('/authenticate',                UsersController.authenticate)
+router.post('/authenticate',                 UsersController.authenticate)
 
 
 router.get('/protected/current_user',              UsersController.current_user)

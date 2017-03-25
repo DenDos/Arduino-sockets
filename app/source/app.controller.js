@@ -1,10 +1,4 @@
 class AppController {
-  constructor($rootScope) {
-  }
-
-  $onInit() {
-  }
-
 }
 
 

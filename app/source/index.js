@@ -7,6 +7,7 @@ import 'angular-loading-bar'
 import 'angular-animate'
 import 'angular-socket-io'
 import 'angular-material'
+import 'angularfire'
 
 
 // Config
@@ -26,6 +27,7 @@ const app = angular
     Shared,
     Common,
     Components,
+    'firebase',
     'ngMaterial',
     'ngAnimate'
   ])

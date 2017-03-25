@@ -1,4 +1,5 @@
 <header current_user="$ctrl.currentUser" connected="$ctrl.connected"></header>
+{{$ctrl.messages}}
 <div ng-cloak >
   <md-content class="md-padding">
     <div layout="row" layout-align="space-between center">
@@ -13,7 +14,7 @@
   <md-content class="md-padding" layout-xs="column" layout="row">
     <div flex-xs flex-gt-xs="100" layout="column">
       <md-slider-container>
-       <md-slider flex min="0" max="2000" ng-model="$ctrl.slider" aria-label="red" id="red-slider">
+       <md-slider flex min="0" max="2000" ng-model="$ctrl.slider" ng-change="$ctrl.sliderChange()" aria-label="red" id="red-slider">
        </md-slider>
        <md-input-container>
          <input flex type="number" ng-model="$ctrl.slider" aria-label="red" aria-controls="red-slider">

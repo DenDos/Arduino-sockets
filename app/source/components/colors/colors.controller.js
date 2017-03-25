@@ -1,22 +1,23 @@
 class ColorsController {
-  constructor($scope, $stateParams, ColorsService, $mdSidenav, UserService, socket, $firebaseObject) {
+  constructor($scope, $stateParams, ColorsService, $mdSidenav, UserService, socket, $firebaseObject, config) {
     this.$firebaseObject = $firebaseObject;
     this.socket = socket;
     this.ColorsService = ColorsService;
+
     this.connected = false;
     this.slider  = 900;
-    var config = {
-      apiKey: "AIzaSyB0t0SCh_yXEv54G7PfpARAESYpTreCngk",
-      authDomain: "test-50531.firebaseapp.com",
-      databaseURL: "https://test-50531.firebaseio.com",
-      storageBucket: "test-50531.appspot.com",
-      messagingSenderId: "212272808520"
-    };
-    firebase.initializeApp(config);
-     this.ref = firebase.database().ref().child("test");
+    debugger
+    firebase.initializeApp(config.firebase);
+    debugger
+
+    this.ref = firebase.database().ref().child("test");
+    this.ref.on('value', function(dataSnapshot) {
+      console.log(dataSnapshot.val(), 'dataSnapshot');
+    })
     // create a synchronized array
     // click on `index.html` above to see it used in the DOM!
     this.messages = $firebaseObject(this.ref);
+
     console.log(this.messages);
   }
 
@@ -51,6 +52,6 @@ class ColorsController {
   }
 }
 
-// ColorsController.$inject = ['$scope', "ColorsService", "socket"]
+// ColorsController.$inject = ['$scope', "ColorsService", "socket", 'config']
 
 export default ColorsController;

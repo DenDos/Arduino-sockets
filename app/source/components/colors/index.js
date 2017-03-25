@@ -13,7 +13,7 @@ const testModule = angular
   .config(($stateProvider, $urlRouterProvider) => {
     $stateProvider
       .state('root.colors', {
-        url: '/',
+        url: '/colors',
         component: 'colors',
         resolve: {
           currentUser: UserService => UserService.getCurrentUser()

@@ -3,8 +3,8 @@ import FirebaseService from './firebase.service';
 
 
 const firebase = angular
-  .module('firebaseModule', [])
-  .service('firebaseService', FirebaseService)
+  .module('firebaseService', [])
+  .service('FirebaseService', FirebaseService)
   .name;
 
 export default firebase;

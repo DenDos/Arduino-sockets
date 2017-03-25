@@ -1,11 +1,8 @@
 <header current_user="$ctrl.currentUser" connected="$ctrl.connected"></header>
-{{$ctrl.messages}}
 <div ng-cloak >
   <md-content class="md-padding">
     <div layout="row" layout-align="space-between center">
-      <h2>Home</h2>
-      <md-button ng-if="!$ctrl.connected" ng-click="$ctrl.connect()" >Connect</md-button>
-      <md-button ng-if="$ctrl.connected" ng-click="$ctrl.disconnect()" >Disconnect</md-button>
+      <h2>Colors</h2>
     </div>
   </md-content>
 </div>
@@ -13,13 +10,17 @@
 <div ng-cloak >
   <md-content class="md-padding" layout-xs="column" layout="row">
     <div flex-xs flex-gt-xs="100" layout="column">
-      <md-slider-container>
-       <md-slider flex min="0" max="2000" ng-model="$ctrl.slider" ng-change="$ctrl.sliderChange()" aria-label="red" id="red-slider">
-       </md-slider>
-       <md-input-container>
-         <input flex type="number" ng-model="$ctrl.slider" aria-label="red" aria-controls="red-slider">
-       </md-input-container>
-      </md-slider-container>
+      <md-input-container>
+        <input
+          colorpicker='hex'
+          type="text"
+          ng-model="$ctrl.colorPicker"
+          ng-selected="$ctrl.colorChage()"
+        />
+      </md-input-container>
+      <div class="colors-show-container">
+        <div class='colors-show-box' ng-style="{background: $ctrl.colorPicker}"></div>
+      </div>
     </div>
   </md-content>
 </div>

@@ -1,57 +1,28 @@
 class ColorsController {
-  constructor($scope, $stateParams, ColorsService, $mdSidenav, UserService, socket, $firebaseObject, config) {
-    this.$firebaseObject = $firebaseObject;
-    this.socket = socket;
+  constructor($scope, ColorsService, $firebaseObject, config, FirebaseService) {
+    this.$scope = $scope;
     this.ColorsService = ColorsService;
+    this.FirebaseService = FirebaseService;
+    this.$firebaseObject = $firebaseObject;
+    this.init();
+  }
 
-    this.connected = false;
-    this.slider  = 900;
-    debugger
-    firebase.initializeApp(config.firebase);
-    debugger
+  init() {
+    this.firebaseModule = this.FirebaseService.init();
+    this.colorsRef      = this.FirebaseService.getDatabase('colors');
+    this.firebaseData   =  this.$firebaseObject(this.colorsRef);
 
-    this.ref = firebase.database().ref().child("test");
-    this.ref.on('value', function(dataSnapshot) {
-      console.log(dataSnapshot.val(), 'dataSnapshot');
+    this.colorsRef.on('value', (dataSnapshot) => {
+      let rgb = dataSnapshot.val();
+      this.colorPicker = this.ColorsService.RGBToHex(rgb.red, rgb.green, rgb.blue)
     })
-    // create a synchronized array
-    // click on `index.html` above to see it used in the DOM!
-    this.messages = $firebaseObject(this.ref);
 
-    console.log(this.messages);
   }
 
-  sliderChange() {
-    var obj = this.$firebaseObject(this.ref);
-    obj.foo = this.slider;
-    obj.$save().then((ref)=> {
-      ref.key === obj.$id; // true
-    }, function(error) {
-      console.log("Error:", error);
-    });
-    //  this.ref.set({ as: this.slider });
-    console.log(this.slider);
-  }
-
-  $onInit() {
-    this.socket.on('connected',(msg) => {
-      this.connected = msg;
-    })
-  }
-
-  $onDestroy() {
-    console.log('asdfasdf');
-  }
-
-  connect(){
-    this.socket.emit('connect', true)
-  }
-
-  disconnect(){
-    this.socket.emit('connect', false)
+  colorChage() {
+    let rgb = this.ColorsService.hexToRGB(this.colorPicker);
+    this.FirebaseService.sendToDb( this.colorsRef, this.firebaseData, rgb )
   }
 }
-
-// ColorsController.$inject = ['$scope', "ColorsService", "socket", 'config']
 
 export default ColorsController;

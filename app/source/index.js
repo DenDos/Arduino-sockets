@@ -8,6 +8,8 @@ import 'angular-animate'
 import 'angular-socket-io'
 import 'angular-material'
 import 'angularfire'
+import "angular-bootstrap-colorpicker"
+import "../../node_modules/angular-bootstrap-colorpicker/css/colorpicker.css"
 
 
 // Config
@@ -28,6 +30,7 @@ const app = angular
     Common,
     Components,
     'firebase',
+    'colorpicker.module',
     'ngMaterial',
     'ngAnimate'
   ])

@@ -1,20 +1,20 @@
 import angular          from 'angular';
 import uiRouter         from 'angular-ui-router';
 
-import HomeComponent from './home.component';
-import HomeService      from './home.service';
+import ColorsComponent from './colors.component';
+import ColorsService      from './colors.service';
 
 const testModule = angular
-  .module('home', [
+  .module('colors', [
     uiRouter,
   ])
-  .component('home', HomeComponent)
-  .service('HomeService', HomeService)
+  .component('colors', ColorsComponent)
+  .service('ColorsService', ColorsService)
   .config(($stateProvider, $urlRouterProvider) => {
     $stateProvider
-      .state('root.home', {
+      .state('root.colors', {
         url: '/',
-        component: 'home',
+        component: 'colors',
         resolve: {
           currentUser: UserService => UserService.getCurrentUser()
         }

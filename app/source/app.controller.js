@@ -1,7 +1,6 @@
-class AppController {
+class ColorsController {
 }
 
+ColorsController.$inject = ['$rootScope'];
 
-AppController.$inject = ['$rootScope'];
-
-export default AppController;
+export default ColorsController;

@@ -5,6 +5,32 @@
       <h2>Colors</h2>
     </div>
   </md-content>
+
+  <div layout="row" layout-align="start center">
+    <div>
+      <md-button
+        ng-if="!$ctrl.ledStatus"
+        class="xs-raised"
+        aria-label="Learn More"
+        ng-click="$ctrl.ledOn()">
+        Включить
+      </md-button>
+
+      <md-button
+        ng-if="$ctrl.ledStatus"
+        class="xs-raised"
+        aria-label="Learn More"
+        ng-click="$ctrl.ledOff()">
+        Выключить
+      </md-button>
+    </div>
+    <md-button  class="md-icon-button led-status-button" aria-label="Favorite">
+       <md-icon class='status-on' style="color: deep-orange;" ng-if="$ctrl.ledStatus">brightness_hight</md-icon>
+       <md-icon class='status-off' style="color: deep-orange;" ng-if="!$ctrl.ledStatus">brightness_low</md-icon>
+    </md-button>
+  </div>
+
+
 </div>
 
 <div ng-cloak >

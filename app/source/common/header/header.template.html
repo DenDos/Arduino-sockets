@@ -6,13 +6,6 @@
     <h2>
       <span>Ардуино</span>
     </h2>
-    <md-button ng-if="$ctrl.connected" class="md-icon-button" aria-label="Favorite">
-       <md-icon style="color: deep-orange;">done</md-icon>
-    </md-button>
-    <md-button ng-if="!$ctrl.connected" class="md-icon-button" aria-label="Favorite">
-       <md-icon style="color: deep-orange;">error outline</md-icon>
-    </md-button>
-
     <span flex></span>
     <md-button ng-if="$ctrl.currentUser" class="xs-raised" aria-label="Learn More">
       {{$ctrl.currentUser.email}}

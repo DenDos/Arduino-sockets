@@ -28,7 +28,7 @@ class FirebaseService {
           return;
         }
       }
-      ref.set({ ...data });
+      ref.update({...data});
     }
 
   }

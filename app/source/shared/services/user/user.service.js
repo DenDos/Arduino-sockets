@@ -8,13 +8,13 @@ class UserService {
     this.$rootScope = $rootScope;
     this.config    = config;
 
-    var token  = this.$window.localStorage.jwtToken;
+    var token  = this.$window.localStorage.arduinoJwtToken;
     this.token = token;
 
   }
 
   saveToken(token) {
-    this.$window.localStorage.jwtToken = token;
+    this.$window.localStorage.arduinoJwtToken = token;
   }
 
   getUserInfo(id) {

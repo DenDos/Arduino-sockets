@@ -4,11 +4,11 @@ class AuthService {
   }
 
   saveToken(token) {
-    this.$window.localStorage.jwtToken = token;
+    this.$window.localStorage.arduinoJwtToken = token;
   }
 
   getToken() {
-    return this.$window.localStorage.jwtToken;
+    return this.$window.localStorage.arduinoJwtToken;
   }
 
   parseJwt(token) {
@@ -28,7 +28,7 @@ class AuthService {
   }
 
   logout() {
-    this.$window.localStorage.removeItem('jwtToken');
+    this.$window.localStorage.removeItem('arduinoJwtToken');
      window.location.href = '/';
   }
 

@@ -11,12 +11,32 @@ class ColorsController {
     this.firebaseModule = this.FirebaseService.init();
     this.colorsRef      = this.FirebaseService.getDatabase('colors');
     this.firebaseData   =  this.$firebaseObject(this.colorsRef);
+    this.handlaChangeValue(this.colorsRef);
+    
+  }
 
-    this.colorsRef.on('value', (dataSnapshot) => {
-      let rgb = dataSnapshot.val();
-      this.colorPicker = this.ColorsService.RGBToHex(rgb.red, rgb.green, rgb.blue)
+  handlaChangeValue(ref) {
+    ref.on('value', (dataSnapshot) => {
+      let dataValue = dataSnapshot.val();
+      this.colorPicker = this.catchColorPicker(dataValue)
+      this.ledStatus   = this.catchLedStatus(dataValue)
     })
+  }
 
+  catchColorPicker(data) {
+    return this.ColorsService.RGBToHex(data.red, data.green, data.blue)
+  }
+
+  catchLedStatus(data) {
+    return data.led
+  }
+
+  ledOn() {
+    this.FirebaseService.sendToDb( this.colorsRef, this.firebaseData, { led: true })
+  }
+
+  ledOff() {
+    this.FirebaseService.sendToDb( this.colorsRef, this.firebaseData, { led: false })
   }
 
   colorChage() {

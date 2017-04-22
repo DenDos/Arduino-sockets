@@ -1,33 +1,25 @@
 #include <ESP8266WiFi.h>
 #include <FirebaseArduino.h>
 
-// CustomLibs
-#include "FirebaseInit.h"
-#include "WiFi.h"
 
-#define WIFI_SSID "mesto5"
-#define WIFI_PASS "mediumwell"
+//int greenPin = 4;
+//int redPin = 5;
+//int bluePin = 16;
 
+// void connectWifi() {
 
-int greenPin = 4;
-int redPin = 5;
-int bluePin = 16;
+//   WiFi.begin(WIFI_SSID, WIFI_PASS);
+//   Serial.println("Connecting...");
 
-void connectWifi() {
+//   while (WiFi.status() != WL_CONNECTED) {
+//     Serial.println(".");
+//     delay(500);
+//   }
 
-  WiFi.begin(WIFI_SSID, WIFI_PASS);
-  Serial.println("Connecting...");
-
-  while (WiFi.status() != WL_CONNECTED) {
-    Serial.println(".");
-    delay(500);
-  }
-
-  Serial.println();
-  Serial.println("IP address: ");
-  Serial.println(WiFi.localIP());
-}
-
+//   Serial.println();
+//   Serial.println("IP address: ");
+//   Serial.println(WiFi.localIP());
+// }
 // void setupFirebase() {
 //   Firebase.begin(FIREBASE_HOST);
 //   Serial.println();
@@ -38,7 +30,6 @@ void connectWifi() {
 
 void setup() {
     Serial.begin(9600);
-    pinMode(LED_BUILTIN, OUTPUT);
     connectWifi();
     setupFirebase();
     //
@@ -48,7 +39,11 @@ void setup() {
 }
 
 void loop() {
-  getFirebaseLedInfo();
+  digitalWrite(LED_BUILTIN, HIGH);
+  delay(1000);
+
+  digitalWrite(LED_BUILTIN, LOW);
+  delay(1000);
 }
 
 

@@ -1,12 +1,33 @@
 <header current_user="$ctrl.currentUser" connected="$ctrl.connected"></header>
+
+
+<div ng-cloak >
+  <md-content class="md-padding" layout-xs="column" layout="row">
+    <div layout="row" layout-align="space-between center">
+      <h2 ng-if="$ctrl.connected">Подключено</h2>
+      <h2 ng-if="!$ctrl.connected">Не Подключено</h2>
+    </div>
+    <div flex-xs flex-gt-xs="100" layout="column">
+      <md-slider-container>
+       <md-slider flex min="0" max="100" ng-model="$ctrl.slider" ng-change="$ctrl.sliderChange()" aria-label="red" id="red-slider">
+       </md-slider>
+       <md-input-container>
+         <input flex type="number" ng-model="$ctrl.slider" aria-label="red" aria-controls="red-slider">
+       </md-input-container>
+      </md-slider-container>
+    </div>
+  </md-content>
+</div>
+
 <div ng-cloak >
   <md-content class="md-padding">
     <div layout="row" layout-align="space-between center">
-      <h2>Colors</h2>
+      <h2>Лампочка</h2>
     </div>
   </md-content>
 
   <div layout="row" layout-align="start center">
+
     <div>
       <md-button
         ng-if="!$ctrl.ledStatus"
@@ -24,16 +45,22 @@
         Выключить
       </md-button>
     </div>
+
     <md-button  class="md-icon-button led-status-button" aria-label="Favorite">
        <md-icon class='status-on' style="color: deep-orange;" ng-if="$ctrl.ledStatus">brightness_hight</md-icon>
        <md-icon class='status-off' style="color: deep-orange;" ng-if="!$ctrl.ledStatus">brightness_low</md-icon>
     </md-button>
   </div>
 
-
 </div>
 
+
 <div ng-cloak >
+  <md-content class="md-padding">
+    <div layout="row" layout-align="space-between center">
+      <h2>Colors</h2>
+    </div>
+  </md-content>
   <md-content class="md-padding" layout-xs="column" layout="row">
     <div flex-xs flex-gt-xs="100" layout="column">
       <md-input-container>

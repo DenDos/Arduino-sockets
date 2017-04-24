@@ -1,6 +1,6 @@
 {
   "mongoose": {
-    "uri": "mongodb://localhost/arduino",
+    "uri": "mongodb://cotoha_92:password@ds119081.mlab.com:19081/arduino",
     "options": {
       "server": {
         "socketOptions": {

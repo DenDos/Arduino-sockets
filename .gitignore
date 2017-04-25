@@ -7,7 +7,6 @@ tmp/*
 #dist/
 gen/
 docs/
-build/
 stats.json
 npm-debug.log
 server/services/http/error.log

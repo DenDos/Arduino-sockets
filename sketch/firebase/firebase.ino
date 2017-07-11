@@ -1,15 +1,11 @@
 
 #include "Arduino.h"
-
 #include <ESP8266WiFi.h>
 #include <ESP8266mDNS.h>
 #include <ESP8266WebServer.h>
 #include <ESP8266HTTPClient.h>
 #include <WiFiUdp.h>
 #include <ArduinoOTA.h>
-
-
-
 
 // #include <Firebase.h>
 // #include <FirebaseCloudMessaging.h>

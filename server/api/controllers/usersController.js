@@ -11,6 +11,9 @@ var upload = require('../../services/uploader').single('file');
 var log    = require('../../utils/log')(module)
 
 exports.test = (req, res,next) => {
+
+    log.info(req.body)
+
     res.json({
     success: true,
     message: "asdfasdf"

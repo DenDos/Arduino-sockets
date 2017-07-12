@@ -21,5 +21,4 @@ router.get('/protected/user/:id',                  UsersController.get_user)
 router.get('/users',                               UsersController.all)
 router.post('/user',                               UsersController.add)
 
-
-router.post('/test',                               UsersController.test)
+router.post('/test1',                               UsersController.test)

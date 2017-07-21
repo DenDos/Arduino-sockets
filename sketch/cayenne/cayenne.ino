@@ -1,15 +1,15 @@
-#include <ESP8266WiFi.h>
+// #include <ESP8266WiFi.h>
 
 
 // #include "CayenneWiFiClient.h"
-// #include <CayenneMQTTESP8266.h>
+#include <CayenneMQTTESP8266.h>
 // #include <CayenneWiFi.h>
 
 #define CAYENE_DEBUG
 #define CAYENE_PRINT Serial
 
-char ssid[] = "Komandir";
-char password[] = "151151488";
+char ssid[] = "mesto5";
+char password[] = "mediumwell";
 
 char username[] = "0dc15960-34f0-11e7-8bd2-af7268e693eb";
 char mqtt_pass[] = "909f31f3020866622d2c6d39e01ea2175c4f610e";
@@ -24,41 +24,49 @@ char token[] = "74ytaov8jz";
 // char ssid[] = "NetworkSSID";
 // char password[] = "NetworkPassword";
 
-void setup()
-{
-	// Serial.begin(9600);
-	// Cayenne.begin(token, ssid, password);
-}
+// void setup()
+// {
+// 	// Serial.begin(9600);
+// 	// Cayenne.begin(token, ssid, password);
 
-void loop()
-{
-	// Cayenne.run();
-}
-
-// void setup() {
-//   Serial.begin(9600);
-//   Cayenne.begin(username, mqtt_pass, client_id, ssid, password);
+// 	Serial.begin(9600);
+// 	Cayenne.begin(username, mqtt_pass, client_id, ssid, password);
+// 	// Cayenne.begin(token, ssid, password);
+//   // Cayenne.begin(username, mqtt_pass, client_id, ssid, password);
 //   pinMode(LED, OUTPUT);
 //   pinMode(PONT, INPUT);
 // }
 
-// void loop() {
-//   int x;
-//   x = analogRead(PONT) / 4;
+// void loop()
+// {
+// 	// Cayenne.run();
+// 	Cayenne.loop();
+// }
+
+void setup() {
+  Serial.begin(9600);
+  Cayenne.begin(username, mqtt_pass, client_id, ssid, password);
+  pinMode(LED, OUTPUT);
+  pinMode(PONT, INPUT);
+}
+
+void loop() {
+  int x;
+  x = analogRead(PONT) / 4;
   
 
-//   Cayenne.loop();
-//   // if (millis() - previousMillis > interval) {
-//     Serial.println("PONT: ");
-//     Serial.println(x);
-//     Cayenne.virtualWrite(1, x, TYPE_TEMPERATURE, UNIT_FAHRENHEIT);
-//   // }
-//   // digitalWrite(LED_BUILTIN, HIGH);   // turn the LED on (HIGH is the voltage level)
-//   // delay(1000);                       // wait for a second
-//   // digitalWrite(LED_BUILTIN, LOW);    // turn the LED off by making the voltage LOW
-//   // delay(1000);                       // wait for a second
-// }
+  Cayenne.loop();
+  // if (millis() - previousMillis > interval) {
+    Serial.println("PONT: ");
+    Serial.println(x);
+    Cayenne.virtualWrite(1, x, TYPE_TEMPERATURE, UNIT_FAHRENHEIT);
+  // }
+  // digitalWrite(LED_BUILTIN, HIGH);   // turn the LED on (HIGH is the voltage level)
+  // delay(1000);                       // wait for a second
+  // digitalWrite(LED_BUILTIN, LOW);    // turn the LED off by making the voltage LOW
+  // delay(1000);                       // wait for a second
+}
 
-// CAYENNE_IN(0) {
-//   digitalWrite(LED, !getValue.asInt());
-// }
+CAYENNE_IN(0) {
+  digitalWrite(LED, !getValue.asInt());
+}

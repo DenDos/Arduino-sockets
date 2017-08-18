@@ -16,7 +16,7 @@ exports.test = (req, res,next) => {
 
     res.json({
     success: true,
-    message: "asdfasdf"
+    message: "data: " + req.body.pot
   })
 }
 

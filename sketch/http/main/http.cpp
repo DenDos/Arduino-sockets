@@ -38,7 +38,7 @@ void Http::get(String path, String data)
 }
 
 
-void Http::post(String path, String data)
+void Http::post(String path, String data, void (*callback)(String payload))
 {
   Serial.print("connecting to ");
   Serial.println(_host);
@@ -50,6 +50,8 @@ void Http::post(String path, String data)
 
   int httpCode = client.POST(data);   //Send the request
   String payload = client.getString();                  //Get the response payload
+
+  callback(payload);
 
   client.end();  //Close connection
 

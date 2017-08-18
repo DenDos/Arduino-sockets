@@ -12,7 +12,7 @@ class Http
 {
   public:
     Http(char* host);
-    void post(String path, String data);
+    void post(String path, String data, void (*callback)(String payload));
     void get(String path, String data);
     String get_link(String path);
   private:

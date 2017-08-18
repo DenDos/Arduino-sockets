@@ -18,7 +18,7 @@ String Http::get_link(String path) {
 }
 
 
-void Http::get(String path)
+void Http::get(String path, String data)
 {
   Serial.print("connecting to ");
   Serial.println(_host);
@@ -28,7 +28,7 @@ void Http::get(String path)
   client.begin(link);      //Specify request destination
   client.addHeader("Content-Type", "application/json");  //Specify content-type header
 
-  int httpCode = client.GET(data);   //Send the request
+  int httpCode = client.GET();   //Send the request
   String payload = client.getString();                  //Get the response payload
 
   Serial.println(httpCode);   //Print HTTP return code
@@ -52,5 +52,5 @@ void Http::post(String path, String data)
   String payload = client.getString();                  //Get the response payload
 
   client.end();  //Close connection
-  
+
 }
